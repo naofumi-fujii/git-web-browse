@@ -15,7 +15,8 @@ func main() {
 		repoNameWithGit := splitted[len(splitted)-1]
 		repoName := strings.Replace(repoNameWithGit, ".git", "", -1)
 		userName := splitted[len(splitted)-2]
-		hostName := splitted[len(splitted)-3]
+		hostNameWithGit := splitted[len(splitted)-3]
+		hostName := strings.Replace(hostNameWithGit, "git@", "", -1)
 		result := []string{hostName, userName, repoName}
 		fmt.Println(strings.Join(result, "/"))
 	}
