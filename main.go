@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/url"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -17,8 +16,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		result := []string{"https:/", u.Hostname(), u.Path}
-		fmt.Println(strings.Join(result, "/"))
+		fmt.Println("https://" + u.Hostname() + u.Path)
 	}
 	if err := scanner.Err(); err != nil {
 		fmt.Fprintln(os.Stderr, "reading standard input:", err)
