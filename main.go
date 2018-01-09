@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"os"
 	"os/exec"
+	"runtime"
 )
 
 func main() {
@@ -13,7 +14,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("https://" + u.Hostname() + u.Path)
+	url := "https://" + u.Hostname() + u.Path
+	openBrowser(url)
 }
 
 func getGitRemoteURL() string {
@@ -26,4 +28,23 @@ func getGitRemoteURL() string {
 	}
 
 	return string(out)
+}
+
+func openBrowser(url string) {
+	var err error
+
+	switch runtime.GOOS {
+	case "linux":
+		err = exec.Command("xdg-open", url).Start()
+	case "windows":
+		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+	case "darwin":
+		err = exec.Command("open", url).Start()
+	default:
+		err = fmt.Errorf("unsupported platform")
+	}
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }
