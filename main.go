@@ -6,8 +6,9 @@ import (
 	"net/url"
 	"os"
 	"os/exec"
-	"runtime"
 	"strings"
+
+	"github.com/pkg/browser"
 )
 
 func main() {
@@ -15,12 +16,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	url := "https://" + u.Hostname() + u.Path
-	openBrowser(url)
+
+	args := os.Args
+	if len(args) < 2 {
+		browser.OpenURL(strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n"))
+	} else {
+		browser.OpenURL(strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commit/" + args[1])
+	}
 }
 
 func getGitRemoteURL() string {
-
 	out, err := exec.Command("git", "remote", "get-url", "origin").Output()
 
 	if err != nil {
@@ -30,23 +35,4 @@ func getGitRemoteURL() string {
 
 	url := string(out)
 	return strings.Replace(url, "git@github.com:", "ssh://git@github.com/", -1)
-}
-
-func openBrowser(url string) {
-	var err error
-
-	switch runtime.GOOS {
-	case "linux":
-		err = exec.Command("xdg-open", url).Start()
-	case "windows":
-		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
-	case "darwin":
-		err = exec.Command("open", url).Start()
-	default:
-		err = fmt.Errorf("unsupported platform")
-	}
-	if err != nil {
-		log.Fatal(err)
-	}
-
 }
