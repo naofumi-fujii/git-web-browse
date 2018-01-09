@@ -36,5 +36,7 @@ func getGitRemoteURL() string {
 	}
 
 	url := string(out)
-	return strings.Replace(url, "git@github.com:", "ssh://git@github.com/", -1)
+	r1 := strings.Replace(url, "git@github.com:", "ssh://git@github.com/", -1)
+	r2 := strings.Replace(r1, ".git", "", -1)
+	return r2
 }
