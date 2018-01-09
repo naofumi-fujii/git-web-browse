@@ -18,11 +18,13 @@ func main() {
 	}
 
 	args := os.Args
+	url := ""
 	if len(args) < 2 {
-		browser.OpenURL(strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n"))
+		url = strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n")
 	} else {
-		browser.OpenURL(strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commit/" + args[1])
+		url = strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commit/" + args[1]
 	}
+	browser.OpenURL(url)
 }
 
 func getGitRemoteURL() string {
