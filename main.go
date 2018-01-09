@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"strings"
 )
 
 func main() {
@@ -27,7 +28,8 @@ func getGitRemoteURL() string {
 		os.Exit(1)
 	}
 
-	return string(out)
+	url := string(out)
+	return strings.Replace(url, "git@github.com:", "ssh://git@github.com/", -1)
 }
 
 func openBrowser(url string) {
