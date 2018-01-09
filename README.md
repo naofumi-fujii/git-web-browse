@@ -3,9 +3,9 @@ open your github or gitlab project by browser
 
 install
 --
-`$ go get -u github.com/naofumi-fujii/git-browse`
+- `$ go get -u github.com/naofumi-fujii/git-browse`
 
 usage
 --
-`$ git-browse`
-`$ git-browse [commithash]`
+- `$ git-browse`
+- `$ git-browse [commithash]`
