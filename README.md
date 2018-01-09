@@ -8,3 +8,4 @@ install
 usage
 --
 `$ git-browse`
+`$ git-browse [commithash]`
