@@ -1,11 +1,11 @@
-# git-browse
+# git-browse-web
 open your github or gitlab project by browser
 
 install
 --
-- `$ go get -u github.com/naofumi-fujii/git-browse`
+- `$ go get -u github.com/naofumi-fujii/git-browse-web`
 
 usage
 --
-- `$ git-browse`
-- `$ git-browse [commithash]`
+- `$ git-browse-web`
+- `$ git-browse-web [commithash]`
