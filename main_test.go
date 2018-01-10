@@ -14,6 +14,8 @@ func Test_formatURL(t *testing.T) {
 		// TODO: Add test cases.
 		{"test", args{"test"}, "test"},
 		{"test", args{"git@github.com:naofumi-fujii/git-browse-web"}, "ssh://git@github.com/naofumi-fujii/git-browse-web"},
+		{"test", args{"ssh://git@gitlab.com/naofumi-fujii/gitlab.git"}, "ssh://git@gitlab.com/naofumi-fujii/gitlab"},
+
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
