@@ -7,5 +7,6 @@ install
 
 usage
 --
+- `$ cd path/to/your/project`
 - `$ git-browse-web`
 - `$ git-browse-web [commithash]`
