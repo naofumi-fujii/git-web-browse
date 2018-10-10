@@ -1,5 +1,5 @@
 # git-web-browse
-open your github or gitlab project by browser
+open your github, gitlab or bitbucket project by browser
 
 install
 --
