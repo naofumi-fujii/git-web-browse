@@ -22,12 +22,12 @@ func main() {
 	if len(args) < 2 {
 		url = strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n")
 	} else {
-		url = getUrlByHostingService(url, u, args)
+		url = getURLByHostingService(url, u, args)
 	}
 	browser.OpenURL(url)
 }
 
-func getUrlByHostingService(url string, u *url.URL, args []string) string {
+func getURLByHostingService(url string, u *url.URL, args []string) string {
 	if strings.Contains(u.Hostname(), "bitbucket") {
 		return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commits/" + args[1]
 	}
