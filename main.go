@@ -22,9 +22,16 @@ func main() {
 	if len(args) < 2 {
 		url = strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n")
 	} else {
-		url = strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commit/" + args[1]
+		url = getUrlByHostingService(url, u, args)
 	}
 	browser.OpenURL(url)
+}
+
+func getUrlByHostingService(url string, u *url.URL, args []string) string {
+	if strings.Contains(u.Hostname(), "bitbucket") {
+		return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commits/" + args[1]
+	}
+	return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commit/" + args[1]
 }
 
 func getGitRemoteURL() string {
