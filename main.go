@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	u, err := url.Parse(getGitRemoteURL())
+	u, err := url.Parse(getFormattedGitRemoteURL())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,7 +37,7 @@ func getCommitHashURLByHostingService(u *url.URL, args []string) string {
 	return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commit/" + commitHash
 }
 
-func getGitRemoteURL() string {
+func getFormattedGitRemoteURL() string {
 	out, err := exec.Command("git", "remote", "get-url", "origin").Output()
 
 	if err != nil {
