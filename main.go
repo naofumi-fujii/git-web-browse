@@ -46,10 +46,10 @@ func getFormattedGitRemoteURL() string {
 	}
 
 	url := string(out)
-	return formatURL(url)
+	return getGitRemoteURL(url)
 }
 
-func formatURL(url string) string {
+func getGitRemoteURL(url string) string {
 	r1 := strings.Replace(url, "git@github.com:", "ssh://git@github.com/", -1)
 	r2 := strings.Replace(r1, ".git", "", -1)
 	return r2

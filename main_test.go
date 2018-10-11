@@ -19,8 +19,8 @@ func Test_formatURL(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := formatURL(tt.args.url); got != tt.want {
-				t.Errorf("formatURL() = %v, want %v", got, tt.want)
+			if got := getGitRemoteURL(tt.args.url); got != tt.want {
+				t.Errorf("getGitRemoteURL() = %v, want %v", got, tt.want)
 			}
 		})
 	}
