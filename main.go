@@ -30,10 +30,11 @@ func getTargetURL(args []string, u *url.URL) string {
 }
 
 func getCommitHashURLByHostingService(u *url.URL, args []string) string {
+	commitHash := args[1]
 	if strings.Contains(u.Hostname(), "bitbucket") {
-		return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commits/" + args[1]
+		return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commits/" + commitHash
 	}
-	return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commit/" + args[1]
+	return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commit/" + commitHash
 }
 
 func getGitRemoteURL() string {
