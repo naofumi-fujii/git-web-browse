@@ -25,11 +25,11 @@ func getTargetURL(args []string, u *url.URL) string {
 	if len(args) < 2 {
 		return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n")
 	} else {
-		return getURLByHostingService(u, args)
+		return getCommitHashURLByHostingService(u, args)
 	}
 }
 
-func getURLByHostingService(u *url.URL, args []string) string {
+func getCommitHashURLByHostingService(u *url.URL, args []string) string {
 	if strings.Contains(u.Hostname(), "bitbucket") {
 		return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n") + "/commits/" + args[1]
 	}
