@@ -22,13 +22,11 @@ func main() {
 }
 
 func getTargetURL(args []string, u *url.URL) string {
-	url := ""
 	if len(args) < 2 {
-		url = strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n")
+		return strings.TrimSuffix("https://"+u.Hostname()+u.Path, "\n")
 	} else {
-		url = getURLByHostingService(u, args)
+		return getURLByHostingService(u, args)
 	}
-	return url
 }
 
 func getURLByHostingService(u *url.URL, args []string) string {
