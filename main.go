@@ -38,6 +38,12 @@ func getCommitHashURLByHostingService(u *url.URL, args []string) string {
 }
 
 func getFormattedGitRemoteURL() string {
+	r1 := strings.Replace(getGitRemoteURL(), "git@github.com:", "ssh://git@github.com/", -1)
+	r2 := strings.Replace(r1, ".git", "", -1)
+	return r2
+}
+
+func getGitRemoteURL() string {
 	out, err := exec.Command("git", "remote", "get-url", "origin").Output()
 
 	if err != nil {
@@ -46,11 +52,5 @@ func getFormattedGitRemoteURL() string {
 	}
 
 	url := string(out)
-	return getGitRemoteURL(url)
-}
-
-func getGitRemoteURL(url string) string {
-	r1 := strings.Replace(url, "git@github.com:", "ssh://git@github.com/", -1)
-	r2 := strings.Replace(r1, ".git", "", -1)
-	return r2
+	return url
 }
