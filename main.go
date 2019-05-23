@@ -11,8 +11,12 @@ import (
 	"github.com/pkg/browser"
 )
 
+func parsedURL(gitRemoteURL string) (*url.URL, error) {
+	return url.Parse(getFormattedGitRemoteURL(gitRemoteURL))
+}
+
 func main() {
-	u, err := url.Parse(getFormattedGitRemoteURL(getGitRemoteURL()))
+	u, err := parsedURL(getGitRemoteURL())
 	if err != nil {
 		log.Fatal(err)
 	}
